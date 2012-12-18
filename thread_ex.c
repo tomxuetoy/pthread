@@ -55,6 +55,8 @@ void thread_create(void)
         printf("Thread 2 created!\n");
 }
 
+/* to block main() to prevent that main() exits too early
+ * so pthread_join(thread[1],NULL); can be commented out without big difference */
 void thread_wait(void)
 {
     /*Wait thread end*/
@@ -63,11 +65,11 @@ void thread_wait(void)
         printf("Thread 1 completed\n");
     }
     printf("between pthread_join(), if print something, where will it be shown?\n");
-    if(thread[1] != 0) {                	//if thread id is effective
-        pthread_join(thread[1],NULL);   	//will be blocked here untill the target thread terminates
-        printf("Thread 2 completed.\n");
-    }
-    printf("after pthread_join(), if print something, where will it be shown?\n");
+    //if(thread[1] != 0) {                	//if thread id is effective
+    //    pthread_join(thread[1],NULL);   	//will be blocked here untill the target thread terminates
+    //    printf("Thread 2 completed.\n");
+    //}
+    //printf("after pthread_join(), if print something, where will it be shown?\n");
 }
 
 int main()
